@@ -53,10 +53,10 @@ class UserController
         $allField = [
             'firstname' => $firstname,
             'lastname' => $lastname,
-            'login' => $username,
+            'username' => $username,
             'email' => $email,
-            'pass' => $pass,
-            'pass2' => $pass2
+            'password' => $password,
+            'password2' => $password2
         ];
         foreach($allField as $filed => $value) {
             if (empty(trim($value))) {
