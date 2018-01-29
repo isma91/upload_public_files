@@ -13,7 +13,7 @@
 namespace model;
 class User
 {
-    static public function checkDuplicateEmail($email) {
+    public function checkDuplicateEmail($email) {
         $bdd = new Bdd();
         $arrayField = array("email");
         $where = "email = '" . $email ."'";
@@ -25,7 +25,7 @@ class User
         }
     }
     
-    static public function checkDuplicateUsername($username) {
+    public function checkDuplicateUsername($username) {
         $bdd = new Bdd();
         $arrayField = array("username");
         $where = "username = '" . $username ."'";
