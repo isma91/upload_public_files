@@ -91,4 +91,16 @@ class User
             return false;
         }
     }
+
+    private function _checkToken ($token) {
+        $bdd = new Bdd();
+        $arrayField = array("token");
+        $where = "id = " . $_SESSION["id"];
+        $checkToken = $bdd->select("user", $arrayField, $where);
+        if ($token === $checkToken[0]["token"]) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
