@@ -10,6 +10,26 @@ html,body {
 	text-align: center;
 }
 
+#toast-container {
+	width: 100%;
+	margin: auto;
+	text-align: center;
+}
+
+.alert-success {
+	width: 100%;
+	margin: auto;
+	text-align: center;
+	background-color: #008000;
+}
+
+.alert-failed {
+	width: 100%;
+	margin: auto;
+	text-align: center;
+	background-color: #FF0000;
+}
+
 .btn,
 .btn:hover {
 	background-color: #000000;
