@@ -103,4 +103,13 @@ class User
             return false;
         }
     }
+
+    public function getUser() {
+        $bdd = new Bdd();
+        $arrayField = array("lastname", "firstname", "username", "email");
+        $where = "id = " . $_SESSION["id"];
+        $user = $bdd->select("user", $arrayField, $where);
+        return $user[0];
+    }
+
 }
