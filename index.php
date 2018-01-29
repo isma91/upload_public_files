@@ -17,10 +17,13 @@ $router = new \routing\Router($_GET["url"]);
  * Here are all the using routes
  */
 /*
- * Home page
+ * The login page
  */
 $router->get("", "Site#index");
 $router->get("/", "Site#index");
+$router->get("/login", "Site#index");
+$router->get("/register", "Site#register");
+$router->get("/forgotPass", "Site#forgotPass");
 /*$router->post("logout", "User#logout");
 $router->get("/admin/update/:type/:id", "User#displayThing");
 $router->post("/admin/update/:type/:id", "User#updateThing");*/
