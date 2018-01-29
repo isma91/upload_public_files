@@ -13,5 +13,16 @@
 namespace model;
 class User
 {
+    public function checkDuplicateEmail($email) {
+        $bdd = new Bdd();
+        $arrayField = array("email");
+        $where = "email = '" . $email ."'";
+        $user = $bdd->select("user", $arrayField, $where);
+        if (!empty($user)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     
 }
