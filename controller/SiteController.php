@@ -10,8 +10,7 @@ use model\View;
 
 class SiteController
 {
-    public function checkMaintenance($page, array $array = array())
-    {
+    public function checkMaintenance($page, array $array = array()) {
         $config = new Config();
         if ($config->getMaintenance() === "true") {
             $view = new View("site#maintenance");
@@ -27,8 +26,15 @@ class SiteController
         }
     }
 
-    public function index()
-    {
+    public function index() {
         $this->checkMaintenance("site#index");
+    }
+    
+    public function register() {
+        $this->checkMaintenance("site#register");
+    }
+    
+    public function forgotPass() {
+        $this->checkMaintenance("site#forgotPass");
     }
 }
