@@ -76,4 +76,19 @@ class User
             return false;
         }
     }
+
+    static public function isConnected () {
+        $bdd = new Bdd();
+        if (!isset($_SESSION['id']) && !isset($_SESSION['token'])) {
+            return false;
+        }
+        $arrayField = array("id", "token", "username");
+        $where = "id = " . $_SESSION["id"] . " AND token = '" . $_SESSION["token"] . "'";
+        $user = $bdd->select("user", $arrayField, $where);
+        if ($user) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
