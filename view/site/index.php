@@ -17,12 +17,18 @@
             <h2>Please log in to begin</h2>
         </div>
     </div>
+    <div class="row failed">
+        <?php if ($this->error !== null) { echo $this->error; } ?>
+    </div>
+    <div class="row success">
+        <?php if ($this->success !== null) { echo $this->success; } ?>
+    </div>
     <div class="container">
         <form id="loginForm" action="/login" method="POST" class="row">
             <div class="row">
                 <div class="input-field col s12">
                     <i class="material-icons prefix">face</i>
-                    <input id="username" name="username" type="text">
+                    <input id="username" name="username" type="text" value="<?php echo $this->usernameEmail ?>">
                     <label for="username">Username</label>
                 </div>
             </div>
@@ -30,7 +36,7 @@
                 <div class="input-field col s12">
                     <i class="material-icons prefix">vpn_key</i>
                     <i class="material-icons right" id="displayUserPass">visibility</i>
-                    <input id="pass" name="password" type="password">
+                    <input id="pass" name="password" type="password" value="<?php echo $this->password ?>">
                     <label for="pass">Mot de passe</label>
                 </div>
             </div>
