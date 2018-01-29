@@ -37,12 +37,29 @@ class User
         }
     }
 
-    public function add($lastname, $firstname, $login, $email, $password) {
+    public function add($firstname, $lastname, $username, $email, $password) {
         $bdd = new Bdd();
         $pass = password_hash($password, PASSWORD_DEFAULT);
-        $arrayField = array("lastname" => $lastname, "firstname" => $firstname, "username" => $login, "email" => $email, "password" => $pass);
+        $arrayField = array("firstname" => $firstname, "lastname" => $lastname, "username" => $username, "email" => $email, "password" => $pass);
         $add = $bdd->insert("user", $arrayField);
         return $add;
+    }
+
+    public function userCredential($usernameEmail, $password) {
+        $bdd = new Bdd();
+        $arrayField = array("id", "password", "token");
+        $where = "username = '" . $usernameEmail . "' OR email = '" . $usernameEmail . "'";
+        $user = $bdd->select("user", $arrayField, $where);
+        if (!empty($user)) {
+            if (password_verify($password, $user[0]["password"])) {
+                $this->_updateToken($user[0]["id"]);
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 
 }
