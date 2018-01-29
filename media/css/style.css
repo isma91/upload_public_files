@@ -10,6 +10,33 @@ html,body {
 	text-align: center;
 }
 
+.success {
+	width: 100%;
+	text-align: center;
+	background-color: #008000;
+	font-size: 1.3em;
+	font-weight: bold;
+	border-radius: 15px;
+}
+
+.failed {
+	width: 100%;
+	text-align: center;
+	background-color: #FF0000;
+	font-size: 1.3em;
+	font-weight: bold;
+	border-radius: 15px;
+}
+
+.info {
+	width: 100%;
+	text-align: center;
+	background-color: #00CCFF;
+	font-size: 1.3em;
+	font-weight: bold;
+	border-radius: 15px;
+}
+
 #toast-container {
 	width: 100%;
 	margin: auto;
