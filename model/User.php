@@ -62,4 +62,18 @@ class User
         }
     }
 
+    private function _updateToken($id) {
+        $bdd = new Bdd();
+        $token = sha1(time() * rand(1, 555));
+        $arrayField = array("token" => $token);
+        $where = "id = $id";
+        $updateToken = $bdd->update("user", $arrayField, $where);
+        if ($updateToken) {
+            $_SESSION['token'] = $token;
+            $_SESSION['id'] = $id;
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
