@@ -112,4 +112,12 @@ class User
         return $user[0];
     }
 
+    public function logout($token) {
+        if ($this->_checkToken($token)) {
+            session_destroy();
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
