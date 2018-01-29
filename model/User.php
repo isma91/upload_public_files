@@ -25,4 +25,15 @@ class User
         }
     }
     
+    public function checkDuplicateUsername($username) {
+        $bdd = new Bdd();
+        $arrayField = array("username");
+        $where = "username = '" . $username ."'";
+        $user = $bdd->select("user", $arrayField, $where);
+        if (!empty($user)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
