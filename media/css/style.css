@@ -5,3 +5,41 @@ html,body {
 	padding: 0px;
 	font-family: 'Abel-Regular', sans-serif;
 }
+
+.center {
+	text-align: center;
+}
+
+.btn,
+.btn:hover {
+	background-color: #000000;
+}
+
+.input-field label,
+.input-field .prefix {
+	color: #808080;
+}
+
+.input-field input[type=text]:focus + label,
+.input-field input[type=password]:focus + label,
+.input-field input[type=password]:focus + label,
+.materialize-textarea:focus + label,
+.input-field .prefix.active,
+.materialize-textarea:focus + label {
+	color: #000000 !important;
+}
+
+.input-field input[type=text]:focus,
+.input-field input[type=password]:focus {
+	border-bottom: 1px solid #000000 !important;
+	box-shadow: 0 1px 0 0 #000000 !important;
+}
+
+textarea.materialize-textarea:focus:not([readonly]) {
+	border-bottom: 1px solid #000000;
+	box-shadow: 0 1px 0 0 #000000;
+}
+
+#displayUserPass {
+	cursor: pointer;
+}
