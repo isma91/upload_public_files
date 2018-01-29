@@ -36,4 +36,13 @@ class User
             return false;
         }
     }
+
+    public function add($lastname, $firstname, $login, $email, $password) {
+        $bdd = new Bdd();
+        $pass = password_hash($password, PASSWORD_DEFAULT);
+        $arrayField = array("lastname" => $lastname, "firstname" => $firstname, "username" => $login, "email" => $email, "password" => $pass);
+        $add = $bdd->insert("user", $arrayField);
+        return $add;
+    }
+
 }
