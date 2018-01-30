@@ -29,10 +29,9 @@
 </head>
 <body>
 <div class="container">
-    <h1 class="title">Page non trouvé</h1>
-    <button class="btn waves-effect" onclick="window.history.back()">Revenir En Arriere</button>
-    <a class="btn waves-effect" href="/">Page D'Accueil</a>
+    <h1 class="title">Error 404 !!</h1>
+    <button class="btn waves-effect" onclick="window.history.back()">Go back</button>
+    <a class="btn waves-effect" href="/">Go to home page</a>
 </div>
-<?php include("footer.html"); ?>
 </body>
 </html>
