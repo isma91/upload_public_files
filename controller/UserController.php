@@ -115,4 +115,52 @@ class UserController
         }
     }
 
+    public function login () {
+        $username = $_POST['username'];
+        $password = $_POST["password"];
+        $allField = [
+            'username' => $username,
+            'password' => $password
+        ];
+        foreach($allField as $filed => $value) {
+            if (empty(trim($value))) {
+                array_push($errField, $value);
+            }
+        }
+        $user = new User();
+        $view = new View("site#index");
+        $message = new Message();
+        $messages = $message->getMessages();
+        if (count($errField) > 0) {
+            $fields = "";
+            foreach($errField as $key => $value) {
+                $fields = $fields . ", " . $value;
+            }
+            $fields = substr($fields, 2);
+            $view->set("error", sprintf($messages["error"]["emptyField"], $fields));
+            $view->render();
+        } elseif (strlen($password) <= 3) {
+            $view->set("error", $messages["error"]["passwordNotLong"]);
+            $view->render();
+        } elseif (strlen($username) <= 3) {
+            $view->set("error", $messages["error"]["usernameNotLong"]);
+            $view->render();
+        } else {
+            $checkUserCredential = $user->userCredential($username, $password);
+            if ($checkUserCredential) {
+                $this->home();
+            } else {
+                foreach ($allField as $field => $value) {
+                    $view->set($field, $value);
+                }
+                $view->set("error", $messages["error"]["userCredential"]);
+                $view->render();
+            }
+        }
+    }
+
+    public function home() {
+
+    }
+
 }
