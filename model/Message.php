@@ -40,9 +40,12 @@ class Message
             "duplicateUsername" => "Username already taken !!",
             "somethingGotWrong" => "Something got wrong when we try to %s, please send email to '" . $emailTo . "' !!",
             "userCredential" => "Bad username and/or password !!",
+            "mustBeConnected" => "You must be connected to go here !!",
+            "mustNotBeConnected" => "You can't go here if you're connected !!",
         );
         $successMessage = array(
             "register" => "You successfully registered yourself !! You can now log in !!",
+            "logout" => "You successfully logout !! Come again !!",
         );
         $infoMessage = array(
             "maintenance" => "The site is in maintenance, come back later or send email to '" . $emailTo . "' !!",
