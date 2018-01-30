@@ -64,9 +64,8 @@ class UserController
             }
         }
         $user = new User();
-        /*
-        use the checkduplicateemail & username with user class
-        */
+        $duplicateEmail = $user->checkDuplicateEmail($email);
+        $duplicateUsername = $user->checkDuplicateUsername($username);
         $view = new View("site#register");
         $message = new Message();
         $messages = $message->getMessages();
@@ -81,22 +80,22 @@ class UserController
         } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $view->set("error", $messages["error"]["emailNotValid"]);
             $view->render();
-        } elseif (strlen($pass) <= 3 || strlen($pass2) <= 3) {
+        } elseif (strlen($password) <= 3 || strlen($password2) <= 3) {
             $view->set("error", $messages["error"]["passwordNotLong"]);
             $view->render();
-        } elseif ($pass !== $pass2) {
+        } elseif ($password !== $password2) {
             $view->set("error", $messages["error"]["passwordNotSame"]);
             $view->render();
         } elseif (strlen($username) <= 3) {
             $view->set("error", $messages["error"]["usernameNotLong"]);
             $view->render();
-        } elseif ($field = "duplicateEmail") {
+        } elseif ($duplicateEmail) {
             foreach ($allField as $field => $value) {
                 $view->set($field, $value);
             }
             $view->set("error", $messages["error"]["duplicateEmail"]);
             $view->render();
-        } elseif ($field = "duplicateUsername") {
+        } elseif ($duplicateUsername) {
             foreach ($allField as $field => $value) {
                 $view->set($field, $value);
             }
@@ -104,8 +103,14 @@ class UserController
             $view->render();
         } else {
             $add = $user->add($firstname, $lastname, $username, $email, $password);
-            var_dump($add); die();
-            $view->set("success", $messages["success"]["register"]);
+            if ($add) {
+                $view->set("success", $messages["success"]["register"]);
+            } else {
+                foreach ($allField as $field => $value) {
+                    $view->set($field, $value);
+                }
+                $view->set("error", sprintf($messages["error"]["somethingGotWrong"], "register you"));
+            }
             $view->render();
         }
     }
