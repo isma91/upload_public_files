@@ -38,7 +38,7 @@ class Message
             "usernameNotLong" => "The username must be at least 4 characters long !!",
             "duplicateEmail" => "Email already taken !!",
             "duplicateUsername" => "Username already taken !!",
-            "somethingGotWrong" => "Something got wrong when we try to %s please send email to '" . $emailTo . "' !!",
+            "somethingGotWrong" => "Something got wrong when we try to %s, please send email to '" . $emailTo . "' !!",
         );
         $successMessage = array(
             "register" => "You successfully registered yourself !! You can now log in !!",
