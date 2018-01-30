@@ -29,10 +29,7 @@
 </head>
 <body>
 <div class="container">
-    <div class="mui-panel" id="div">
-        <h1 class="title">Site En Maintenance</h1>
-        <h2 class="title">Nous reviendrons vers vous dès que possible</h2>
-    </div>
+    <h1 class="title"><?php echo $this->maintenance; ?></h1>
 </div>
 </body>
 </html>
