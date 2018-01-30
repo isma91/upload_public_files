@@ -28,14 +28,6 @@ class UserController
         if ($config->getMaintenance() === "true") {
             $view = new View("site#maintenance");
             $view->render();
-        } else {
-            $view = new View($page);
-            if (!empty($array)) {
-                foreach ($array as $item => $value) {
-                    $view->set($item, $value);
-                }
-            }
-            $view->render();
         }
     }
 
@@ -160,7 +152,56 @@ class UserController
     }
 
     public function home() {
+        $this->redirectIfNotLoged("user#home");
+    }
 
+
+    /**
+     * @param $viewName
+     * @param array $arraySet
+     */
+    public function redirectIfNotLoged($viewName, $arraySet = array(), $getUser = true) {
+        $this->checkMaintenance($viewName);
+        $userClass = new User();
+        $connected = User::isConnected();
+        $message = new Message();
+        $messages = $message->getMessages();
+        if ($connected === true) {
+            $view = new View($viewName);
+            if (!empty($arraySet)) {
+                foreach ($arraySet as $name => $value) {
+                    $view->set($name, $value);
+                }
+            }
+            if ($getUser === true) {
+                $user = $userClass->getUser();
+                if ($user !== false) {
+                    foreach ($user as $name => $value) {
+                        $view->set($name, $value);
+                    }
+                }
+            }
+            $view->render();
+        } else {
+            $view = new View("site#index");
+            $view->set("error", $messages["error"]["mustBeConnected"]);
+            $view->render();
+        }
+    }
+
+    public function logout() {
+        $token = $_POST["token"];
+        $user = new User();
+        $logout = $user->logout($token);
+        if ($logout) {
+            $view = new View("site#index");
+            $view->set("success", $messages["success"]["logout"]);
+            $view->render();
+        } else {
+            $view = new View("user#home");
+            $view->set("error", sprintf($messages["error"]["somethingGotWrong"], "logout"));
+            $view->render();
+        }
     }
 
 }
