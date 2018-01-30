@@ -27,8 +27,11 @@ $router->get("/forgotPass", "Site#forgotPass");
 $router->post("/register", "User#register");
 
 $router->post("/login", "User#login");
-/*$router->post("logout", "User#logout");
-$router->get("/admin/update/:type/:id", "User#displayThing");
+
+$router->get("/home", "User#home");
+
+$router->post("logout", "User#logout");
+/*$router->get("/admin/update/:type/:id", "User#displayThing");
 $router->post("/admin/update/:type/:id", "User#updateThing");*/
 /*
  * Run the routing System
