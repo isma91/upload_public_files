@@ -96,6 +96,9 @@ class UserController
         } else {
             $add = $user->add($firstname, $lastname, $username, $email, $password);
             if ($add) {
+                $oldUmask = umask(0);
+                mkdir(__DIR__ . "/../upload/" . $username, 0777);
+                umask($oldUmask);
                 $view->set("success", $messages["success"]["register"]);
             } else {
                 foreach ($allField as $field => $value) {
@@ -108,6 +111,7 @@ class UserController
     }
 
     public function login () {
+        $errField = array();
         $username = $_POST['username'];
         $password = $_POST["password"];
         $allField = [
@@ -192,6 +196,8 @@ class UserController
     public function logout() {
         $token = $_POST["token"];
         $user = new User();
+        $message = new Message();
+        $messages = $message->getMessages();
         $logout = $user->logout($token);
         if ($logout) {
             $view = new View("site#index");
