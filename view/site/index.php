@@ -36,8 +36,8 @@
                 <div class="input-field col s12">
                     <i class="material-icons prefix">vpn_key</i>
                     <i class="material-icons right" id="displayUserPass">visibility</i>
-                    <input id="pass" name="password" type="password" value="<?php echo $this->password ?>">
-                    <label for="pass">Mot de passe</label>
+                    <input id="password" name="password" type="password" value="<?php echo $this->password ?>">
+                    <label for="password">Mot de passe</label>
                 </div>
             </div>
             <div class="row center">
