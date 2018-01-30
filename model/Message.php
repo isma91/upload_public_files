@@ -39,6 +39,7 @@ class Message
             "duplicateEmail" => "Email already taken !!",
             "duplicateUsername" => "Username already taken !!",
             "somethingGotWrong" => "Something got wrong when we try to %s, please send email to '" . $emailTo . "' !!",
+            "userCredential" => "Bad username and/or password !!",
         );
         $successMessage = array(
             "register" => "You successfully registered yourself !! You can now log in !!",
