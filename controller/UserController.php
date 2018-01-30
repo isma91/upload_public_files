@@ -16,6 +16,7 @@ use model\Config;
 use model\Message;
 use model\User;
 use model\View;
+use model\File;
 /**
  * Class UserController
  * @package controller
@@ -156,9 +157,10 @@ class UserController
     }
 
     public function home() {
+        $file = new File();
+        $usernameFolders = $file->getFolderFromUser();
         $this->redirectIfNotLoged("user#home");
     }
-
 
     /**
      * @param $viewName
