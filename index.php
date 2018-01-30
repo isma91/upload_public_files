@@ -30,7 +30,7 @@ $router->post("/login", "User#login");
 
 $router->get("/home", "User#home");
 
-$router->post("logout", "User#logout");
+$router->post("/logout", "User#logout");
 /*$router->get("/admin/update/:type/:id", "User#displayThing");
 $router->post("/admin/update/:type/:id", "User#updateThing");*/
 /*
