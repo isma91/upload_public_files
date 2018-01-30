@@ -45,10 +45,10 @@ class User
         return $add;
     }
 
-    public function userCredential($usernameEmail, $password) {
+    public function userCredential($username, $password) {
         $bdd = new Bdd();
         $arrayField = array("id", "password", "token");
-        $where = "username = '" . $usernameEmail . "' OR email = '" . $usernameEmail . "'";
+        $where = "username = '" . $username . "'";
         $user = $bdd->select("users", $arrayField, $where);
         if (!empty($user)) {
             if (password_verify($password, $user[0]["password"])) {
