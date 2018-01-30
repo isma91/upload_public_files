@@ -36,9 +36,9 @@ class View
         $message = new Message();
         $messages = $message->getMessages();
         if ($config->getMaintenance() === 'true') {
-            $this->_data["site"]["info"] = $messages["info"]["maintenance"];
+            $this->_data["maintenance"] = $messages["info"]["maintenance"];
         } else {
-            $this->_data["site"]["info"] = null;
+            $this->_data["maintenance"] = null;
         }
         $this->_file = $file;
     }
