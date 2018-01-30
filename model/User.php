@@ -17,7 +17,7 @@ class User
         $bdd = new Bdd();
         $arrayField = array("email");
         $where = "email = '" . $email ."'";
-        $user = $bdd->select("user", $arrayField, $where);
+        $user = $bdd->select("users", $arrayField, $where);
         if (!empty($user)) {
             return true;
         } else {
@@ -29,7 +29,7 @@ class User
         $bdd = new Bdd();
         $arrayField = array("username");
         $where = "username = '" . $username ."'";
-        $user = $bdd->select("user", $arrayField, $where);
+        $user = $bdd->select("users", $arrayField, $where);
         if (!empty($user)) {
             return true;
         } else {
@@ -41,7 +41,7 @@ class User
         $bdd = new Bdd();
         $pass = password_hash($password, PASSWORD_DEFAULT);
         $arrayField = array("firstname" => $firstname, "lastname" => $lastname, "username" => $username, "email" => $email, "password" => $pass);
-        $add = $bdd->insert("user", $arrayField);
+        $add = $bdd->insert("users", $arrayField);
         return $add;
     }
 
@@ -49,7 +49,7 @@ class User
         $bdd = new Bdd();
         $arrayField = array("id", "password", "token");
         $where = "username = '" . $usernameEmail . "' OR email = '" . $usernameEmail . "'";
-        $user = $bdd->select("user", $arrayField, $where);
+        $user = $bdd->select("users", $arrayField, $where);
         if (!empty($user)) {
             if (password_verify($password, $user[0]["password"])) {
                 $this->_updateToken($user[0]["id"]);
@@ -67,7 +67,7 @@ class User
         $token = sha1(time() * rand(1, 555));
         $arrayField = array("token" => $token);
         $where = "id = $id";
-        $updateToken = $bdd->update("user", $arrayField, $where);
+        $updateToken = $bdd->update("users", $arrayField, $where);
         if ($updateToken) {
             $_SESSION['token'] = $token;
             $_SESSION['id'] = $id;
@@ -84,7 +84,7 @@ class User
         }
         $arrayField = array("id", "token", "username");
         $where = "id = " . $_SESSION["id"] . " AND token = '" . $_SESSION["token"] . "'";
-        $user = $bdd->select("user", $arrayField, $where);
+        $user = $bdd->select("users", $arrayField, $where);
         if ($user) {
             return true;
         } else {
@@ -96,7 +96,7 @@ class User
         $bdd = new Bdd();
         $arrayField = array("token");
         $where = "id = " . $_SESSION["id"];
-        $checkToken = $bdd->select("user", $arrayField, $where);
+        $checkToken = $bdd->select("users", $arrayField, $where);
         if ($token === $checkToken[0]["token"]) {
             return true;
         } else {
@@ -108,7 +108,7 @@ class User
         $bdd = new Bdd();
         $arrayField = array("lastname", "firstname", "username", "email");
         $where = "id = " . $_SESSION["id"];
-        $user = $bdd->select("user", $arrayField, $where);
+        $user = $bdd->select("users", $arrayField, $where);
         return $user[0];
     }
 
