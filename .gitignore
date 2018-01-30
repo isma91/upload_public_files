@@ -2,3 +2,6 @@
 config.php
 /* visual studio code folder */
 .vscode
+/* all files/folders in upload folder except the index.php file */
+upload/*
+!upload/index.php
