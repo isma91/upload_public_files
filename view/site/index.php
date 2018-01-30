@@ -28,7 +28,7 @@
             <div class="row">
                 <div class="input-field col s12">
                     <i class="material-icons prefix">face</i>
-                    <input id="username" name="username" type="text" value="<?php echo $this->usernameEmail ?>">
+                    <input id="username" name="username" type="text" value="<?php echo $this->username ?>">
                     <label for="username">Username</label>
                 </div>
             </div>
