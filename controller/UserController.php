@@ -159,7 +159,7 @@ class UserController
     public function home() {
         $file = new File();
         $usernameFolders = $file->getFolderFromUser();
-        $this->redirectIfNotLoged("user#home");
+        $this->redirectIfNotLoged("user#home", $usernameFolders);
     }
 
     /**
