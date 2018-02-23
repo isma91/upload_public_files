@@ -20,21 +20,24 @@ class File
         }
         $user = $userClass->getUser();
         $username = $user["username"];
-        if(!file_exists($this->_uploadPath . $username)) {
+        $uploadUsernamePath = realpath($this->_uploadPath . $username);
+        if(!file_exists($uploadUsernamePath)) {
             return false;
         }
-        /*ini_set('xdebug.var_display_max_depth', -1);
-        ini_set('xdebug.var_display_max_children', -1);
-        ini_set('xdebug.var_display_max_data', -1);*/
         $usersFolder = new \RecursiveIteratorIterator(
-            new \RecursiveDirectoryIterator($this->_uploadPath . $username));
+            new \RecursiveDirectoryIterator($uploadUsernamePath));
         $folders = array();
         foreach($usersFolder as $folder) {
             if($folder->isDir() && $folder->getFilename() !== "..") {
                 array_push($folders, $folder->getRealPath());
             }
         }
-        var_dump($folders);
-        echo 'end'; die();
+        foreach($folders as &$folder) {
+            $folder = substr($folder, strlen($uploadUsernamePath) + 1);
+            if (!$folder) {
+                $folder = "/";
+            }
+        }
+        return array("uploadUsernamePath" => $uploadUsernamePath, "folders" => $folders);
     }
 }
